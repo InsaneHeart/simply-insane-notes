@@ -1,0 +1,207 @@
+{
+  "releases": [
+    {
+      "version": "v1.0.0 Alpha",
+      "title": {
+        "pt-BR": "Lançamento Público",
+        "en": "Public Release",
+        "es": "Lanzamiento Público",
+        "fr": "Sortie Publique"
+      },
+      "intro": {
+        "pt-BR": "Após o período de beta fechado, o **Simply Insane Notes** chega ao seu primeiro lançamento público para Foundry VTT, reunindo organização visual, editor de texto rico e mapas mentais interativos em um único módulo.",
+        "en": "Following the closed beta period, **Simply Insane Notes** arrives for its first public release on Foundry VTT, combining visual organization, a rich text editor, and interactive mind maps in a single module.",
+        "es": "Tras el período de beta cerrada, **Simply Insane Notes** llega a su primer lanzamiento público para Foundry VTT, reuniendo organización visual, editor de texto enriquecido y mapas mentales interactivos en un solo módulo.",
+        "fr": "Après la période de bêta fermée, **Simply Insane Notes** arrive pour sa première sortie publique sur Foundry VTT, réunissant organisation visuelle, éditeur de texte riche et cartes mentales interactives dans un seul module."
+      },
+      "sections": [
+        {
+          "heading": {
+            "pt-BR": "Organização e Gerenciador",
+            "en": "Organization & Manager",
+            "es": "Organización y Gestor",
+            "fr": "Organisation et Gestionnaire"
+          },
+          "items": {
+            "pt-BR": [
+              "**Dois modos de visualização**: Alterne livremente entre **Quadro (Kanban)** e **Pastas** conforme preferir organizar sua campanha.",
+              "**Subseções recolhíveis**: Agrupe notas dentro das pastas usando divisões internas com reorganização livre por arraste.",
+              "**Seleção múltipla e ações em lote**: Selecione várias notas ou pastas para mover em grupo, colorir, favoritar, exportar ou excluir de uma vez — com opção de **Desfazer**.",
+              "**Cores e Favoritos**: Personalize a cor de destaque de pastas e notas, mantendo os itens favoritos sempre fixados no topo.",
+              "**Modo compacto ou detalhado**: Alterne entre exibir apenas os títulos ou incluir prévias do conteúdo nos cards.",
+              "**Criação rápida por arraste**: Arraste notas ou subseções para o botão de nova pasta para criar e mover automaticamente."
+            ],
+            "en": [
+              "**Two view modes**: Switch freely between **Board (Kanban)** and **Folders** to organize your campaign your way.",
+              "**Collapsible subsections**: Group notes inside folders using internal sections with free drag-and-drop reordering.",
+              "**Multi-selection & bulk actions**: Select multiple notes or folders to move together, color, favorite, export, or delete at once — with **Undo** support.",
+              "**Colors & Favorites**: Customize accent colors for folders and notes, keeping favorite items pinned to the top.",
+              "**Compact or detailed mode**: Toggle between title-only cards or cards with content previews.",
+              "**Quick creation by drag**: Drag notes or subsections onto the new folder button to create and move automatically."
+            ],
+            "es": [
+              "**Dos modos de vista**: Alterna libremente entre **Tablero (Kanban)** y **Carpetas** para organizar tu campaña.",
+              "**Subsecciones desplegables**: Agrupa notas dentro de las carpetas con divisiones internas y reorganización libre por arrastre.",
+              "**Selección múltiple y acciones en lote**: Selecciona varias notas o carpetas para mover en grupo, colorear, marcar como favoritas, exportar o eliminar a la vez — con opción de **Deshacer**.",
+              "**Colores y Favoritos**: Personaliza el color de carpetas y notas, manteniendo los favoritos siempre fijados arriba.",
+              "**Modo compacto o detallado**: Alterna entre mostrar solo los títulos o incluir vistas previas del contenido.",
+              "**Creación rápida por arrastre**: Arrastra notas o subsecciones al botón de nueva carpeta para crear y mover automáticamente."
+            ],
+            "fr": [
+              "**Deux modes d'affichage** : Basculez librement entre **Tableau (Kanban)** et **Dossiers** pour organiser votre campagne.",
+              "**Sous-sections repliables** : Regroupez vos notes dans les dossiers grâce à des sections internes réorganisables par glisser-déposer.",
+              "**Sélection multiple et actions groupées** : Sélectionnez plusieurs notes ou dossiers pour déplacer, colorer, mettre en favori, exporter ou supprimer en une fois — avec **Annuler**.",
+              "**Couleurs et Favoris** : Personnalisez la couleur des dossiers et des notes, avec les favoris épinglés en haut.",
+              "**Mode compact ou détaillé** : Affichez uniquement les titres ou incluez un aperçu du contenu.",
+              "**Création rapide par glisser-déposer** : Glissez des notes ou sous-sections sur le bouton de nouveau dossier pour créer et déplacer automatiquement."
+            ]
+          }
+        },
+        {
+          "heading": {
+            "pt-BR": "Editor de Notas de Texto",
+            "en": "Rich Text Note Editor",
+            "es": "Editor de Notas de Texto",
+            "fr": "Éditeur de Notes Texte"
+          },
+          "items": {
+            "pt-BR": [
+              "**Formatação completa**: Negrito, itálico, sublinhado, riscado, subtítulos, tamanho de fonte, alinhamento, cor de texto e marca-texto.",
+              "**Blocos e caixas especiais**: Insira **Gavetas recolhíveis**, **Citações**, **Caixas de Nota**, **Blocos de Código** (com botão de copiar), **Recuos com barra colorida** e **Linhas divisórias**.",
+              "**Listas e Checklists**: Listas com marcadores, numeradas e checklists interativos com subitens.",
+              "**Tabelas rápidas**: Criação e edição de tabelas com seleção de múltiplas células, cores, distribuição uniforme e copiar/colar em grade.",
+              "**Imagens integradas ao texto**: Arraste, redimensione, posicione à esquerda ou direita com o texto fluindo ao redor, adicione bordas coloridas e **apare (corte) imagens** diretamente na nota.",
+              "**Links e Menções (`@`)**: Vincule outras notas como chips clicáveis, mencione jogadores (com acesso direto à ficha do personagem e indicador visual de compartilhamento) e reconheça links da web e e-mails automaticamente.",
+              "**Corretor ortográfico integrado**: Verificação automática com sugestões no menu de contexto, suporte a múltiplos idiomas, dicionário personalizado e opção de ignorar palavras por nota."
+            ],
+            "en": [
+              "**Full formatting**: Bold, italic, underline, strikethrough, headings, font sizing, alignment, text color, and highlight.",
+              "**Special blocks & boxes**: Insert **Collapsible Drawers**, **Quotes**, **Note Callouts**, **Code Blocks** (with copy button), **Colored Bar Indents**, and **Dividers**.",
+              "**Lists & Checklists**: Bulleted lists, numbered lists, and interactive checklists with sub-items.",
+              "**Quick tables**: Create and edit tables with multi-cell selection, colors, even distribution, and grid copy/paste.",
+              "**Text-wrapped images**: Drag, resize, align left or right with text wrapping around, add colored borders, and **crop images** directly inside the note.",
+              "**Links & Mentions (`@`)**: Link other notes as clickable chips, mention players (with direct character sheet access and sharing status indicator), and auto-detect web links and emails.",
+              "**Built-in spellchecker**: Automatic checking with context-menu suggestions, multi-language support, custom dictionary, and per-note ignore list."
+            ],
+            "es": [
+              "**Formato completo**: Negrita, cursiva, subrayado, tachado, subtítulos, tamaño de fuente, alineación, color de texto y resaltado.",
+              "**Bloques y cajas especiales**: Inserta **Cajones desplegables**, **Citas**, **Cajas de Nota**, **Bloques de Código** (con botón de copiar), **Sangrías con barra de color** y **Líneas divisorias**.",
+              "**Listas y Checklists**: Listas con viñetas, numeradas y checklists interactivas con subelementos.",
+              "**Tablas rápidas**: Creación y edición de tablas con selección múltiple de celdas, colores, distribución uniforme y copiar/pegar en cuadrícula.",
+              "**Imágenes integradas al texto**: Arrastra, redimensiona, alinea a izquierda o derecha con ajuste de texto, añade bordes de color y **recorta imágenes** directamente en la nota.",
+              "**Enlaces y Menciones (`@`)**: Vincula otras notas como chips clicables, menciona jugadores (con acceso directo a su ficha e indicador de uso compartido) y detecta enlaces web y correos automáticamente.",
+              "**Corrector ortográfico integrado**: Revisión automática con sugerencias en el menú contextual, soporte multilingüe, diccionario personalizado e ignorar palabras por nota."
+            ],
+            "fr": [
+              "**Mise en forme complète** : Gras, italique, souligné, barré, sous-titres, taille de police, alignement, couleur de texte et surlignage.",
+              "**Blocs et encadrés spéciaux** : Insérez des **Tiroirs repliables**, **Citations**, **Encadrés de Note**, **Blocs de Code** (avec bouton copier), **Retraits à barre colorée** et **Séparateurs**.",
+              "**Listes et Checklists** : Listes à puces, numérotées et checklists interactives avec sous-éléments.",
+              "**Tableaux rapides** : Création et édition de tableaux avec sélection multiple, couleurs, répartition uniforme et copier/coller en grille.",
+              "**Images intégrées au texte** : Glissez, redimensionnez, alignez à gauche ou à droite avec habillage du texte, ajoutez des bordures colorées et **rognez vos images** directement dans la note.",
+              "**Liens et Mentions (`@`)** : Liez d'autres notes en puces cliquables, mentionnez des joueurs (accès direct à la fiche et indicateur de partage) et détectez automatiquement les liens web et e-mails.",
+              "**Correcteur orthographique intégré** : Vérification automatique avec suggestions au clic droit, multilingue, dictionnaire personnalisé et mots ignorés par note."
+            ]
+          }
+        },
+        {
+          "heading": {
+            "pt-BR": "Mapas Mentais",
+            "en": "Mind Maps",
+            "es": "Mapas Mentales",
+            "fr": "Cartes Mentales"
+          },
+          "items": {
+            "pt-BR": [
+              "**Canvas amplo e interativo**: Crie nós de texto, imagens, links para outras notas e cards de jogadores com conexões visuais livres.",
+              "**Edição ágil no quadro**: Cores por card, ocultação de descrições longas, duplicação rápida arrastando com `Ctrl`, seleção em massa e histórico de desfazer/refazer.",
+              "**Imagens no mapa**: Redimensionamento e recorte inline diretamente no quadro."
+            ],
+            "en": [
+              "**Wide interactive canvas**: Create text nodes, images, note links, and player cards with free visual connections.",
+              "**Fast board editing**: Card colors, collapsible descriptions, quick duplication by dragging with `Ctrl`, bulk selection, and undo/redo history.",
+              "**Images on canvas**: Inline resizing and cropping directly on the board."
+            ],
+            "es": [
+              "**Lienzo amplio e interactivo**: Crea nodos de texto, imágenes, enlaces a otras notas y tarjetas de jugadores con conexiones visuales libres.",
+              "**Edición ágil en el tablero**: Colores por tarjeta, descripciones plegables, duplicación rápida arrastrando con `Ctrl`, selección masiva e historial de deshacer/rehacer.",
+              "**Imágenes en el mapa**: Redimensionamiento y recorte directo en el lienzo."
+            ],
+            "fr": [
+              "**Canevas large et interactif** : Créez des nœuds texte, images, liens vers d'autres notes et cartes de joueurs avec connexions libres.",
+              "**Édition rapide sur le tableau** : Couleurs par carte, descriptions repliables, duplication rapide en glissant avec `Ctrl`, sélection multiple et historique annuler/rétablir.",
+              "**Images sur la carte** : Redimensionnement et rognage directement sur le tableau."
+            ]
+          }
+        },
+        {
+          "heading": {
+            "pt-BR": "Pesquisa, Navegação e Produtividade",
+            "en": "Search, Navigation & Productivity",
+            "es": "Búsqueda, Navegación y Productividad",
+            "fr": "Recherche, Navigation et Productivité"
+          },
+          "items": {
+            "pt-BR": [
+              "**Pesquisa Global e Favoritas**: Janela flutuante com filtros, sugestões de preenchimento e histórico de notas recentes.",
+              "**Busca e Substituição na nota**: Localize e substitua termos dentro de notas de texto e mapas mentais.",
+              "**Navegação rápida**: Botões no HUD do Foundry, localização direta da nota atual no gerenciador (`Shift + Clique` ou clique direito) e **atalhos de teclado configuráveis**.",
+              "**Informações da nota**: Painel com contagem de palavras e caracteres, datas, links internos/externos e **links inversos (backlinks)**."
+            ],
+            "en": [
+              "**Global Search & Favorites**: Floating window with filters, autocomplete suggestions, and recent notes history.",
+              "**In-note Find & Replace**: Find and replace terms inside text notes and mind maps.",
+              "**Quick navigation**: Foundry HUD buttons, direct jump to the current note in the manager (`Shift + Click` or right-click), and **configurable keyboard shortcuts**.",
+              "**Note Info**: Panel with word and character counts, timestamps, internal/external links, and **backlinks**."
+            ],
+            "es": [
+              "**Búsqueda Global y Favoritas**: Ventana flotante con filtros, sugerencias de autocompletado e historial de notas recientes.",
+              "**Buscar y Reemplazar en la nota**: Localiza y reemplaza términos dentro de notas de texto y mapas mentales.",
+              "**Navegación rápida**: Botones en el HUD de Foundry, localización directa de la nota actual en el gestor (`Shift + Clic` o clic derecho) y **atajos de teclado configurables**.",
+              "**Información de la nota**: Panel con conteo de palabras y caracteres, fechas, enlaces internos/externos y **enlaces inversos (backlinks)**."
+            ],
+            "fr": [
+              "**Recherche Globale et Favoris** : Fenêtre flottante avec filtres, suggestions d'autocomplétion et historique des notes récentes.",
+              "**Rechercher et Remplacer dans la note** : Trouvez et remplacez des termes dans les notes texte et les cartes mentales.",
+              "**Navigation rapide** : Boutons dans le HUD Foundry, localisation directe de la note actuelle dans le gestionnaire (`Maj + Clic` ou clic droit) et **raccourcis clavier configurables**.",
+              "**Informations de la note** : Panneau avec compteur de mots et caractères, dates, liens internes/externes et **rétroliens (backlinks)**."
+            ]
+          }
+        },
+        {
+          "heading": {
+            "pt-BR": "Compartilhamento, Exportação e Backup",
+            "en": "Sharing, Export & Backup",
+            "es": "Compartir, Exportación y Respaldo",
+            "fr": "Partage, Exportation et Sauvegarde"
+          },
+          "items": {
+            "pt-BR": [
+              "**Compartilhamento flexível**: Compartilhe notas específicas com jogadores escolhidos ou com toda a mesa em modo somente leitura, com área dedicada para notas recebidas.",
+              "**Bloqueio de edição**: Trave notas importantes contra alterações acidentais.",
+              "**Exportação versátil**: Baixe notas de texto em **Markdown**, **PDF** ou **TXT**, mapas mentais em **PNG**, **JPEG** ou **PDF** em alta resolução, ou exporte várias notas de uma só vez.",
+              "**Backup completo do Mestre**: Exporte todas as notas e imagens da mesa e restaure em outro mundo vinculando perfis antigos aos novos jogadores, com opção de substituir ou mesclar."
+            ],
+            "en": [
+              "**Flexible sharing**: Share specific notes with chosen players or the entire table in read-only mode, with a dedicated area for received notes.",
+              "**Edit lock**: Lock important notes against accidental edits.",
+              "**Versatile export**: Download text notes as **Markdown**, **PDF**, or **TXT**, mind maps as high-res **PNG**, **JPEG**, or **PDF**, or batch-export multiple notes at once.",
+              "**Complete GM Backup**: Export all world notes and images and restore them into another world by mapping old profiles to new players, with replace or merge options."
+            ],
+            "es": [
+              "**Compartición flexible**: Comparte notas específicas con jugadores elegidos o con toda la mesa en modo solo lectura, con un área dedicada para notas recibidas.",
+              "**Bloqueo de edición**: Protege notas importantes contra cambios accidentales.",
+              "**Exportación versátil**: Descarga notas de texto en **Markdown**, **PDF** o **TXT**, mapas mentales en **PNG**, **JPEG** o **PDF** en alta resolución, o exporta varias notas a la vez.",
+              "**Respaldo completo del Director**: Exporta todas las notas e imágenes de la mesa y restáuralas en otro mundo vinculando perfiles antiguos a nuevos jugadores, eligiendo reemplazar o combinar."
+            ],
+            "fr": [
+              "**Partage flexible** : Partagez des notes spécifiques avec certains joueurs ou toute la table en lecture seule, avec un espace dédié aux notes reçues.",
+              "**Verrouillage d'édition** : Protégez vos notes importantes contre toute modification accidentelle.",
+              "**Exportation polyvalente** : Téléchargez vos notes texte en **Markdown**, **PDF** ou **TXT**, vos cartes mentales en **PNG**, **JPEG** ou **PDF** haute résolution, ou exportez plusieurs notes en lot.",
+              "**Sauvegarde complète du MJ** : Exportez toutes les notes et images du monde et restaurez-les dans un autre monde en associant les anciens profils aux nouveaux joueurs (remplacer ou fusionner)."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+/* ================= BOTÕES HUD (32x32 PADRÃO FOUNDRY) ================= */
+#fk-hud-controls {
+  position: fixed;
+  bottom: 82px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 70;
+  transition: bottom 0.15s ease;
+}
+
+#fk-hud-controls .fk-hud-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: rgba(210, 210, 220, 0.5);
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+#fk-hud-controls:hover .fk-hud-btn {
+  background: rgba(15, 14, 24, 0.72);
+  border-color: rgba(155, 135, 245, 0.28);
+  color: rgba(235, 235, 245, 0.88);
+}
+
+#fk-hud-controls .fk-hud-btn:hover {
+  background: rgba(124, 104, 238, 0.22);
+  border-color: rgba(155, 135, 245, 0.65);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(139, 118, 248, 0.3);
+}
+
+/* ================= JANELAS APPLICATIONV2 ================= */
+@keyframes fkWindowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fk-notes-window {
+  background: var(--color-cool-5, #161619) !important;
+  border: 1px solid var(--color-border-dark, #2b2b30) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65) !important;
+  animation: fkWindowOpen 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fk-notes-window.fk-floating-search-window {
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(155, 135, 245, 0.22) !important;
+}
+
+.fk-notes-window ::selection {
+  background: rgba(139, 118, 248, 0.35);
+  color: #ffffff;
+}
+
+.fk-notes-window .window-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  min-height: 36px !important;
+  padding: 2px 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.fk-notes-window .window-header .window-title {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(228, 228, 231, 0.6);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-notes-window.minimized .fk-header-slot {
+  display: none !important;
+}
+
+.fk-notes-window.minimized .window-header {
+  border-bottom: none !important;
+}
+
+.fk-notes-window .window-content {
+  padding: 0 !important;
+  background: transparent !important;
+  color: #e4e4e7;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* Controles na Barra Superior */
+.fk-header-slot {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fk-hdr-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.fk-hdr-btn:hover,
+.fk-hdr-btn.active {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
+.fk-hdr-btn.fav-active {
+  background: rgba(234, 179, 8, 0.18);
+  border-color: rgba(234, 179, 8, 0.55);
+  color: #facc15;
+}
+
+.fk-hdr-btn.fav-active:hover {
+  background: rgba(234, 179, 8, 0.28);
+  color: #fde047;
+}
+
+.fk-hdr-btn.primary {
+  background: rgba(139, 118, 248, 0.16);
+  border-color: rgba(155, 135, 245, 0.42);
+  color: #e9e4ff;
+}
+
+.fk-hdr-btn.primary:hover {
+  background: rgba(139, 118, 248, 0.28);
+  color: #ffffff;
+}
+
+.fk-hdr-btn.icon-only {
+  width: 24px;
+  padding: 0;
+  justify-content: center;
+}
+
+.fk-readonly-badge {
+  font-size: 11px;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ================= MENUS DE CONTEXTO, RETÂNGULOS DE COR & SUBMENUS ANTI-CORTE ================= */
+.fk-dropdown-menu {
+  position: fixed;
+  display: none;
+  min-width: 205px;
+  max-height: calc(100vh - 16px);
+  background: #1e1e23;
+  border: 1px solid #36363c;
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.72);
+  z-index: 10060;
+}
+
+.fk-spell-sugg-item:hover {
+  background: rgba(139, 118, 248, 0.2);
+  color: #ffffff;
+}
+
+.fk-ctx-icon-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 2px 3px 4px 3px;
+}
+
+.fk-ctx-icon-bar button {
+  background: transparent;
+  border: none;
+  color: #e4e4e7;
+  width: 25px !important;
+  height: 25px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+  padding: 0 !important;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fk-ctx-icon-bar button:hover {
+  background: #3f3f46;
+  color: #ffffff;
+}
+
+.fk-color-row {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 8px;
+  gap: 5px;
+}
+
+.fk-color-row-label {
+  font-size: 11px;
+  color: #a1a1aa;
+  white-space: nowrap;
+}
+
+.fk-color-swatches {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.fk-color-swatch {
+  width: 20px !important;
+  height: 14px !important;
+  min-width: 20px !important;
+  min-height: 14px !important;
+  max-width: 20px !important;
+  max-height: 14px !important;
+  border-radius: 3px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  cursor: pointer;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  transition: transform 0.1s ease, border-color 0.1s ease;
+}
+
+.fk-color-swatch:hover {
+  transform: scale(1.15);
+  border-color: #ffffff !important;
+}
+
+.fk-menu-item {
+  position: relative;
+  padding: 6px 10px;
+  font-size: 12.5px;
+  color: #e4e4e7;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fk-menu-item:hover {
+  background: #2d2d34;
+}
+
+.fk-menu-item.danger {
+  color: #f87171;
+}
+
+.fk-menu-sep {
+  height: 1px;
+  background: #2e2e34;
+  margin: 4px 0;
+}
+
+.fk-menu-item.has-submenu {
+  justify-content: space-between;
+}
+
+.fk-submenu {
+  position: absolute;
+  left: 100%;
+  top: -4px;
+  min-width: 195px;
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  background: #1e1e23;
+  border: 1px solid #36363c;
+  border-radius: 5px;
+  padding: 4px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.72);
+  display: none;
+  z-index: 10070;
+}
+
+.fk-menu-item.has-submenu:hover > .fk-submenu {
+  display: block;
+}
+
+.fk-menu-item-support:hover {
+  background: rgba(139, 92, 246, 0.25);
+  color: #f4f4f5;
+}
+
+.fk-menu-item-support:hover i {
+  color: #facc15;
+}
+
+/* ================= INTERFACE DA NOTA DE TEXTO (JANELA, TÍTULO E BOTÃO DE STATUS) ================= */
+.fk-editor-wrapper-rel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.fk-editor-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 36px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.fk-editor-container {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.fk-title-input {
+  width: 100% !important;
+  min-height: 48px !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #fafafa !important;
+  caret-color: #ffffff !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  padding: 4px 0 12px 0 !important;
+  margin-bottom: 16px !important;
+  resize: none !important;
+  overflow: hidden !important;
+  font-family: inherit !important;
+}
+
+.fk-title-input::placeholder {
+  color: #52525b;
+}
+
+/* Pílula flutuante no canto inferior direito (info / cadeado / compartilhado) */
+.fk-note-info-fab {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  height: 24px;
+  min-height: 24px;
+  border-radius: 12px;
+  background: rgba(28, 28, 34, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #a1a1aa;
+  font-size: 11px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 30;
+  transition: all 0.15s ease;
+}
+
+.fk-note-info-fab:hover {
+  background: rgba(139, 118, 248, 0.25);
+  border-color: rgba(155, 135, 245, 0.6);
+  color: #ffffff;
+}
+
+.fk-note-info-fab.locked {
+  background: rgba(234, 179, 8, 0.2);
+  border-color: rgba(234, 179, 8, 0.55);
+  color: #facc15;
+}
+
+.fk-note-info-fab.shared {
+  background: rgba(139, 118, 248, 0.22);
+  border-color: rgba(155, 135, 245, 0.55);
+  color: #c4b5fd;
+}
+
+.fk-note-info-fab.locked.shared {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(139, 118, 248, 0.22));
+  border-color: rgba(234, 179, 8, 0.6);
+  color: #fde047;
+}
+
+/* ================= MOLDURA DE IMAGEM RECORTADA (EDITOR & MAPA MENTAL) ================= */
+.fk-img-crop-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.fk-img-crop-frame > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+/* ================= MODO DE RECORTE INLINE (ESTILO MICROSOFT WORD) ================= */
+.fk-crop-overlay {
+  position: fixed;
+  z-index: 10080;
+  user-select: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22), 0 14px 36px rgba(0, 0, 0, 0.65);
+}
+
+.fk-crop-ghost-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+}
+
+.fk-crop-mask {
+  position: absolute;
+  background: rgba(10, 10, 14, 0.64);
+  pointer-events: none;
+}
+
+.fk-crop-box {
+  position: absolute;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55);
+  cursor: move;
+}
+
+.fk-crop-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+
+.fk-crop-overlay.is-dragging .fk-crop-grid {
+  opacity: 1;
+}
+
+.fk-crop-grid span {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.fk-crop-grid span:nth-child(1) {
+  left: 33.333%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.fk-crop-grid span:nth-child(2) {
+  left: 66.666%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.fk-crop-grid span:nth-child(3) {
+  top: 33.333%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.fk-crop-grid span:nth-child(4) {
+  top: 66.666%;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+/* Alças estilo Microsoft Word (cantos em L + barras laterais) */
+.fk-crop-handle {
+  position: absolute;
+  z-index: 4;
+}
+
+.fk-crop-handle::before,
+.fk-crop-handle::after {
+  content: "";
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(15, 15, 20, 0.9);
+  border-radius: 1px;
+}
+
+/* Cantos (formato L) */
+.fk-crop-handle.handle-nw { top: -5px; left: -5px; width: 18px; height: 18px; cursor: nwse-resize; }
+.fk-crop-handle.handle-nw::before { top: 2px; left: 2px; width: 14px; height: 3.5px; }
+.fk-crop-handle.handle-nw::after  { top: 2px; left: 2px; width: 3.5px; height: 14px; }
+
+.fk-crop-handle.handle-ne { top: -5px; right: -5px; width: 18px; height: 18px; cursor: nesw-resize; }
+.fk-crop-handle.handle-ne::before { top: 2px; right: 2px; width: 14px; height: 3.5px; }
+.fk-crop-handle.handle-ne::after  { top: 2px; right: 2px; width: 3.5px; height: 14px; }
+
+.fk-crop-handle.handle-sw { bottom: -5px; left: -5px; width: 18px; height: 18px; cursor: nesw-resize; }
+.fk-crop-handle.handle-sw::before { bottom: 2px; left: 2px; width: 14px; height: 3.5px; }
+.fk-crop-handle.handle-sw::after  { bottom: 2px; left: 2px; width: 3.5px; height: 14px; }
+
+.fk-crop-handle.handle-se { bottom: -5px; right: -5px; width: 18px; height: 18px; cursor: nwse-resize; }
+.fk-crop-handle.handle-se::before { bottom: 2px; right: 2px; width: 14px; height: 3.5px; }
+.fk-crop-handle.handle-se::after  { bottom: 2px; right: 2px; width: 3.5px; height: 14px; }
+
+/* Laterais (barras retas) */
+.fk-crop-handle.handle-n { top: -6px; left: 50%; transform: translateX(-50%); width: 22px; height: 12px; cursor: ns-resize; }
+.fk-crop-handle.handle-n::before { top: 3px; left: 2px; right: 2px; height: 3.5px; }
+.fk-crop-handle.handle-n::after  { display: none; }
+
+.fk-crop-handle.handle-s { bottom: -6px; left: 50%; transform: translateX(-50%); width: 22px; height: 12px; cursor: ns-resize; }
+.fk-crop-handle.handle-s::before { bottom: 3px; left: 2px; right: 2px; height: 3.5px; }
+.fk-crop-handle.handle-s::after  { display: none; }
+
+.fk-crop-handle.handle-w { left: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 22px; cursor: ew-resize; }
+.fk-crop-handle.handle-w::before { left: 3px; top: 2px; bottom: 2px; width: 3.5px; }
+.fk-crop-handle.handle-w::after  { display: none; }
+
+.fk-crop-handle.handle-e { right: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 22px; cursor: ew-resize; }
+.fk-crop-handle.handle-e::before { right: 3px; top: 2px; bottom: 2px; width: 3.5px; }
+.fk-crop-handle.handle-e::after  { display: none; }
+
+.fk-crop-handle:hover::before,
+.fk-crop-handle:hover::after {
+  background: #c4b5fd;
+}
+
+/* Barra flutuante compacta do recorte */
+.fk-crop-toolbar {
+  position: fixed;
+  z-index: 10085;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 6px;
+  background: #18181f;
+  border: 1px solid rgba(155, 135, 245, 0.4);
+  border-radius: 6px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.72);
+  user-select: none;
+}
+
+.fk-crop-btn {
+  height: 24px !important;
+  min-height: 24px !important;
+  padding: 0 8px !important;
+  margin: 0 !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e4e4e7 !important;
+  font-size: 11.5px !important;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.fk-crop-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.fk-crop-btn.primary {
+  background: rgba(139, 118, 248, 0.25) !important;
+  border-color: rgba(167, 139, 250, 0.6) !important;
+  color: #f5f3ff !important;
+}
+
+.fk-crop-btn.primary:hover {
+  background: rgba(139, 118, 248, 0.4) !important;
+  border-color: #c4b5fd !important;
+  color: #ffffff !important;
+}

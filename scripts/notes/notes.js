@@ -1,0 +1,1 @@
+export { TextNoteInterface } from "./notes-core.js";

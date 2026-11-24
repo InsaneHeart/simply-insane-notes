@@ -1,0 +1,1 @@
+export { ManagerView } from "./manager-core.js";

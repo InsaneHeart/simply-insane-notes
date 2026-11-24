@@ -1,0 +1,966 @@
+/* ================= QUADRO KANBAN & BARRA LATERAL COMPARTILHADA ================= */
+.fk-manager-wrapper {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+.fk-manager-wrapper.panning,
+.fk-manager-wrapper.panning * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+/* Cores diferenciadas da caixa de seleção por arraste (Roxo = Notas, Azul = Pastas, Vermelho = Deselecionar) */
+.fk-manager-wrapper .fk-selection-marquee,
+.fk-manager-wrapper .fk-selection-marquee.mode-note {
+  border: 1px solid #7c68ee;
+  background: rgba(124, 104, 238, 0.16);
+}
+
+.fk-manager-wrapper .fk-selection-marquee.mode-folder {
+  border: 1px solid #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.fk-manager-wrapper .fk-selection-marquee.mode-deselect {
+  border: 1px solid #f43f5e;
+  background: rgba(244, 63, 94, 0.18);
+}
+
+.fk-shared-rail {
+  width: 28px;
+  min-width: 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(139, 118, 248, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.fk-shared-rail:hover {
+  background: rgba(139, 118, 248, 0.12);
+}
+
+.fk-shared-rail i {
+  font-size: 11px;
+  color: #a78bfa;
+}
+
+.fk-shared-rail-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #a1a1aa;
+  white-space: nowrap;
+}
+
+.fk-shared-drawer {
+  width: 260px;
+  min-width: 260px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(46, 29, 86, 0.16);
+  display: flex;
+  flex-direction: column;
+  padding: 14px 12px;
+  flex-shrink: 0;
+}
+
+.fk-shared-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #c4b5fd;
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.fk-shared-group-toggle {
+  background: rgba(139, 118, 248, 0.16);
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  color: #ddd6fe;
+  font-size: 10.5px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+
+.fk-shared-group-toggle:hover {
+  background: rgba(139, 118, 248, 0.32);
+  color: #ffffff;
+}
+
+.fk-manager-body {
+  flex: 1;
+  padding: 14px 16px;
+  overflow: hidden;
+  display: flex;
+}
+
+.fk-kanban-board {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 6px;
+}
+
+.fk-column {
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  background: transparent;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  transition: background 0.45s ease, box-shadow 0.45s ease;
+}
+
+.fk-column:first-child {
+  padding-left: 2px;
+}
+
+.fk-column.drag-over {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Destaque de localização pela busca (fundo levemente mais claro e borda do topo da pasta destacada em roxo com transição suave) */
+.fk-column.fk-locate-pulse,
+.fk-folder-unit.fk-locate-pulse {
+  background: rgba(155, 135, 245, 0.065);
+}
+
+.fk-column.fk-locate-pulse .fk-col-header-box,
+.fk-folder-unit.fk-locate-pulse .fk-folder-header-box {
+  border-color: rgba(155, 135, 245, 0.7) !important;
+  border-top-color: #9b87f5 !important;
+  box-shadow: 0 -2px 0 0 #9b87f5, 0 0 0 1.5px rgba(155, 135, 245, 0.35), 0 4px 14px rgba(124, 104, 238, 0.22) !important;
+  filter: brightness(1.14);
+}
+
+.fk-col-header-box {
+  border: 1px solid #3f3f46;
+  background: #1f1f24;
+  border-radius: 5px;
+  padding: 7px 10px 6px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.45s ease, background 0.45s ease, box-shadow 0.45s ease, filter 0.45s ease;
+}
+
+.fk-col-header-box.is-selected,
+.fk-folder-header-box.is-selected {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.38), 0 4px 14px rgba(56, 189, 248, 0.22);
+}
+
+.fk-col-top-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 7px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.16);
+  cursor: grab;
+}
+
+.fk-col-top-row:active {
+  cursor: grabbing;
+}
+
+.fk-col-title-label {
+  flex: 1;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f4f4f5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-col-count {
+  font-size: 11px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.fk-col-add-note {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  padding: 6px 2px 1px 2px;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.12s ease;
+}
+
+.fk-col-add-note:hover {
+  color: #ffffff;
+}
+
+.fk-col-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.fk-add-col-rail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
+  flex-shrink: 0;
+}
+
+.fk-add-col-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  color: #a1a1aa;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.fk-add-col-btn:hover,
+.fk-add-col-btn.drag-over {
+  background: rgba(139, 118, 248, 0.18);
+  border-color: #9b87f5;
+  color: #ffffff;
+  transform: scale(1.03);
+}
+
+.fk-col-cards {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-bottom: 4px;
+}
+
+.fk-root-dropzone {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 2px;
+  margin-bottom: 0;
+}
+
+/* ================= SUBSEÇÕES (CAIXA ARREDONDADA SEM FUNDO COM LINHA PONTILHADA) ================= */
+.fk-subsection {
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.fk-subsection.is-empty {
+  padding: 5px 8px;
+}
+
+.fk-subsection.drag-hover {
+  background: rgba(139, 118, 248, 0.08);
+  border-color: #9b87f5;
+}
+
+.fk-sub-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 2px;
+  border-radius: 3px;
+  cursor: grab;
+  user-select: none;
+}
+
+.fk-sub-header:active {
+  cursor: grabbing;
+}
+
+.fk-sub-header:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.fk-sub-caret {
+  font-size: 8.5px;
+  color: #71717a;
+  width: 10px;
+  text-align: center;
+}
+
+.fk-sub-title {
+  flex: 1;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #9ca3af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-sub-count {
+  font-size: 10.5px;
+  color: #6b7280;
+}
+
+.fk-sub-add-btn {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  cursor: pointer;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  opacity: 0.4;
+  transition: opacity 0.12s, color 0.12s, background 0.12s;
+}
+
+.fk-sub-header:hover .fk-sub-add-btn {
+  opacity: 1;
+}
+
+.fk-sub-add-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.fk-sub-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 2px 0 2px 0;
+  border-left: none;
+  min-height: 10px;
+}
+
+/* ================= CARDS DE NOTAS, SELEÇÃO MÚLTIPLA & ESTRELA PROTEGIDA ================= */
+.fk-postit {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-left: 3px solid #8b5cf6;
+  border-radius: 4px;
+  padding: 9px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.fk-postit.mindmap {
+  border-left-color: #38bdf8;
+}
+
+.fk-postit.shared {
+  border-left-color: #a78bfa;
+}
+
+.fk-postit:hover {
+  background: rgba(139, 92, 246, 0.16);
+  border-top-color: rgba(167, 139, 250, 0.55);
+  border-right-color: rgba(167, 139, 250, 0.55);
+  border-bottom-color: rgba(167, 139, 250, 0.55);
+  border-left-color: #a78bfa;
+  box-shadow: 0 2px 10px rgba(139, 92, 246, 0.15);
+}
+
+.fk-postit.mindmap:hover {
+  background: rgba(56, 189, 248, 0.15);
+  border-top-color: rgba(56, 189, 248, 0.55);
+  border-right-color: rgba(56, 189, 248, 0.55);
+  border-bottom-color: rgba(56, 189, 248, 0.55);
+  border-left-color: #38bdf8;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.15);
+}
+
+.fk-postit.is-selected {
+  background: rgba(139, 92, 246, 0.22) !important;
+  border-top-color: #9b87f5 !important;
+  border-right-color: #9b87f5 !important;
+  border-bottom-color: #9b87f5 !important;
+  box-shadow: 0 0 0 1.5px rgba(155, 135, 245, 0.45), 0 4px 12px rgba(124, 104, 238, 0.22) !important;
+}
+
+.fk-postit-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.fk-type-icon {
+  color: #71717a;
+  font-size: 11px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Ícones de seleção para notas e pastas (visíveis apenas quando o modo de seleção está ativo) */
+.fk-select-check,
+.fk-folder-select-check {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #71717a;
+  font-size: 12.5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.12s ease, transform 0.12s ease;
+}
+
+.fk-select-check {
+  margin-top: 1px;
+}
+
+.fk-manager-wrapper.fk-select-mode-notes .fk-select-check {
+  display: inline-flex;
+}
+
+.fk-manager-wrapper.fk-select-mode-folders .fk-folder-select-check {
+  display: inline-flex;
+}
+
+.fk-postit.is-selected .fk-select-check {
+  color: #a78bfa;
+}
+
+.fk-col-header-box.is-selected .fk-folder-select-check,
+.fk-folder-header-box.is-selected .fk-folder-select-check {
+  color: #38bdf8;
+}
+
+.fk-select-check:hover {
+  color: #c4b5fd;
+  transform: scale(1.12);
+}
+
+.fk-folder-select-check:hover {
+  color: #7dd3fc;
+  transform: scale(1.12);
+}
+
+.fk-fav-star {
+  color: #facc15;
+  font-size: 11px;
+  flex-shrink: 0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.fk-shared-icon {
+  color: #a78bfa;
+  font-size: 11px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.fk-postit-title {
+  flex: 1;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f4f4f5;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.fk-postit-meta {
+  font-size: 10.5px;
+  color: #a78bfa;
+  padding-left: 17px;
+}
+
+.fk-postit-preview {
+  font-size: 11.5px;
+  color: #a1a1aa;
+  line-height: 1.4;
+  padding-left: 17px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.fk-kanban-board.compact .fk-postit,
+.fk-folders-view-scroll.compact .fk-postit {
+  padding: 6px 8px;
+}
+
+.fk-kanban-board.compact .fk-postit-title,
+.fk-folders-view-scroll.compact .fk-postit-title {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.fk-kanban-board.compact .fk-postit-preview,
+.fk-folders-view-scroll.compact .fk-postit-preview {
+  display: none;
+}
+
+.fk-inline-rename-input {
+  flex: 1;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid #7c68ee !important;
+  border-radius: 3px !important;
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+  font-size: 13px !important;
+  padding: 1px 5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ================= GHOST, PILHA ANIMADA DE NOTAS E TOAST DE DESFAZER ================= */
+.fk-drag-ghost {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10100;
+  opacity: 0.92;
+  background: #232329 !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+}
+
+.fk-drag-stack {
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.96;
+}
+
+.fk-drag-stack::before,
+.fk-drag-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #232329;
+  border: 1px solid #9b87f5;
+  border-radius: 4px;
+  z-index: -1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+}
+
+.fk-drag-stack::before {
+  transform: translate(5px, 5px) rotate(2.2deg);
+  opacity: 0.85;
+}
+
+.fk-drag-stack::after {
+  transform: translate(10px, 10px) rotate(4.5deg);
+  opacity: 0.6;
+}
+
+.fk-stack-count-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #7c68ee;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1.5px solid #18181b;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 3;
+}
+
+.fk-stack-flyer {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10095;
+  background: #232329 !important;
+  border-color: #9b87f5 !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.2s ease !important;
+}
+
+.fk-stack-dragging-source {
+  opacity: 0.18 !important;
+  transform: scale(0.96);
+}
+
+.fk-drop-indicator {
+  height: 2px;
+  background: #7c68ee;
+  border-radius: 2px;
+  margin: -2px 0;
+  pointer-events: none;
+}
+
+/* Toast flutuante de Desfazer no canto inferior direito */
+.fk-undo-toast {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  background: #1f1f26;
+  border: 1px solid rgba(155, 135, 245, 0.45);
+  border-radius: 6px;
+  padding: 7px 11px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+  z-index: 45;
+  animation: fkToastSlideIn 0.18s cubic-bezier(0.2, 0.9, 0.3, 1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fk-undo-toast.hiding {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@keyframes fkToastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fk-undo-toast-text {
+  font-size: 12px;
+  color: #e4e4e7;
+  font-weight: 500;
+}
+
+.fk-undo-toast-btn {
+  background: rgba(139, 118, 248, 0.22);
+  border: 1px solid rgba(167, 139, 250, 0.5);
+  color: #ddd6fe;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.12s, color 0.12s;
+}
+
+.fk-undo-toast-btn:hover {
+  background: #7c68ee;
+  border-color: #9b87f5;
+  color: #ffffff;
+}
+
+.fk-undo-toast-close {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  font-size: 11px;
+  padding: 2px 4px;
+  cursor: pointer;
+  transition: color 0.12s;
+}
+
+.fk-undo-toast-close:hover {
+  color: #f4f4f5;
+}
+
+/* ================= VISUALIZAÇÃO EM PASTAS (2 COLUNAS INDEPENDENTES SEM BORDA EXTERNA) ================= */
+.fk-folders-view-scroll {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 2px 4px 6px 4px;
+}
+
+/* Pasta de Compartilhadas: oculta por padrão e ocupa toda a largura do topo quando aberta */
+.fk-shared-folder-banner {
+  width: 100%;
+  background: rgba(46, 29, 86, 0.36);
+  border: 1px solid rgba(139, 118, 248, 0.32);
+  border-radius: 5px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.fk-shared-folder-banner.collapsed {
+  padding: 6px 12px;
+  background: rgba(139, 118, 248, 0.08);
+  border-color: rgba(139, 118, 248, 0.22);
+}
+
+.fk-shared-banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fk-shared-banner-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c4b5fd;
+}
+
+.fk-shared-banner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(167, 139, 250, 0.25);
+}
+
+/* Barra superior com o botão "+ Nova pasta" sempre no topo (sem linha divisória inferior) */
+.fk-folders-top-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.fk-add-folder-top-btn {
+  width: 100%;
+  min-height: 36px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  color: #a1a1aa;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.fk-add-folder-top-btn:hover,
+.fk-add-folder-top-btn.drag-over {
+  background: rgba(139, 118, 248, 0.16);
+  border-color: #9b87f5;
+  color: #ffffff;
+}
+
+/* Duas colunas independentes lado a lado divididas por linha vertical */
+.fk-folders-two-cols {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+}
+
+.fk-folders-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px;
+  min-height: 120px;
+}
+
+.fk-folders-col:first-child {
+  padding-left: 2px;
+}
+
+.fk-folders-col:last-child {
+  padding-right: 2px;
+}
+
+.fk-folders-v-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* Bloco da pasta: linha divisória inferior apenas quando existir outra pasta abaixo */
+.fk-folder-unit {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: background 0.45s ease;
+}
+
+.fk-folder-unit:has(~ .fk-folder-unit) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.fk-folder-unit:first-child {
+  padding-top: 2px;
+}
+
+.fk-folder-unit.drag-over {
+  background: rgba(139, 118, 248, 0.04);
+}
+
+/* Cabeçalho da pasta preenchido no padrão de cores do canvas */
+.fk-folder-header-box {
+  border: 1px solid #3f3f46;
+  background: #1f1f24;
+  border-radius: 5px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: grab;
+  user-select: none;
+  transition: background 0.45s ease, border-color 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
+}
+
+.fk-folder-header-box:active {
+  cursor: grabbing;
+}
+
+.fk-folder-header-box:hover {
+  filter: brightness(1.08);
+}
+
+.fk-folder-header-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.fk-folder-caret {
+  font-size: 9px;
+  color: #71717a;
+  width: 10px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.fk-folder-icon {
+  font-size: 12.5px;
+  color: #a78bfa;
+  flex-shrink: 0;
+}
+
+.fk-folder-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f4f4f5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-folder-header-right {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.fk-folder-count {
+  font-size: 11px;
+  color: #71717a;
+  font-weight: 500;
+}
+
+.fk-folder-inline-add {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.fk-folder-inline-add:hover {
+  background: rgba(139, 118, 248, 0.22);
+  border-color: rgba(155, 135, 245, 0.5);
+  color: #ffffff;
+}
+
+.fk-folder-body-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.fk-folder-sub-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 0 2px 0;
+  border-left: none;
+  min-height: 10px;
+}
+
+.fk-folder-empty-msg {
+  background: transparent;
+  color: #a1a1aa;
+  font-size: 12px;
+  text-align: left;
+  padding: 2px 4px;
+  user-select: none;
+  pointer-events: none;
+}

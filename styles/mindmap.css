@@ -1,0 +1,343 @@
+/* ================= MAPA MENTAL (CANVAS AMPLO COM IMAGENS, CORES & LINKS INTERNOS) ================= */
+.fk-mindmap-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #121215;
+  cursor: default;
+  user-select: none;
+}
+
+.fk-mindmap-viewport.panning,
+.fk-mindmap-viewport.panning * {
+  cursor: grabbing !important;
+  user-select: none !important;
+}
+
+/* Cursor de cópia somente quando o mouse estiver sobre um card com Ctrl pressionado (ou duplicando) */
+.fk-mindmap-viewport.ctrl-pressed:not(.is-locked) .fk-mm-node,
+.fk-mindmap-viewport.ctrl-pressed:not(.is-locked) .fk-mm-node *,
+.fk-mindmap-viewport.ctrl-duplicating,
+.fk-mindmap-viewport.ctrl-duplicating * {
+  cursor: copy !important;
+}
+
+.fk-mindmap-world {
+  position: absolute;
+  width: 4000px;
+  height: 4000px;
+  transform-origin: 0 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.fk-mindmap-svg {
+  position: absolute;
+  inset: 0;
+  width: 4000px;
+  height: 4000px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1;
+}
+
+.fk-mindmap-svg line {
+  stroke: #71717a;
+  stroke-width: 2;
+  pointer-events: stroke;
+  cursor: default;
+}
+
+.fk-mindmap-svg line:hover {
+  stroke: #38bdf8;
+  stroke-width: 3;
+}
+
+.fk-mindmap-viewport.is-locked .fk-mindmap-svg line {
+  pointer-events: none;
+  cursor: default;
+}
+
+.fk-mindmap-svg line.preview-line {
+  stroke: #38bdf8;
+  stroke-dasharray: 5 4;
+  pointer-events: none;
+}
+
+.fk-selection-marquee {
+  position: absolute;
+  border: 1px solid #7c68ee;
+  background: rgba(124, 104, 238, 0.14);
+  pointer-events: none;
+  z-index: 30;
+}
+
+.fk-selection-marquee.mode-deselect {
+  border: 1px solid #f43f5e !important;
+  background: rgba(244, 63, 94, 0.18) !important;
+}
+
+.fk-mm-node {
+  position: absolute;
+  min-width: 150px;
+  max-width: 260px;
+  background: #1f1f24;
+  border: 1px solid #3f3f46;
+  border-radius: 5px;
+  padding: 8px 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+  transition: border-color 0.12s, border-left-width 0.12s, box-shadow 0.12s, padding 0.12s;
+}
+
+.fk-mindmap-viewport.is-locked .fk-mm-node {
+  cursor: default;
+}
+
+/* Nota Principal em Ouro/Âmbar rico (bem diferente do Amarelo canário #fef08a) */
+.fk-mm-node.root-node {
+  border-color: #f59e0b;
+  background: linear-gradient(145deg, #2e1c08 0%, #1c1206 100%);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.26), inset 0 0 8px rgba(251, 191, 36, 0.08), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Link interno com roxo ametista exclusivo */
+.fk-mm-node.link-node {
+  border-color: #c084fc;
+  background: #2a1638 !important;
+  cursor: default;
+}
+
+.fk-mm-node.link-node .fk-mm-node-details {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+  cursor: default;
+  user-select: none;
+}
+
+.fk-mm-node.image-node {
+  padding: 6px;
+  max-width: none;
+  min-width: 90px;
+}
+
+.fk-mm-node.image-node img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.fk-mm-node.image-node:hover .fk-img-resize {
+  display: block;
+}
+
+/* Seleção indicada por borda mais larga na lateral esquerda */
+.fk-mm-node.selected {
+  border-color: #7c68ee !important;
+  border-left: 5px solid #9b87f5 !important;
+  box-shadow: 0 0 0 1.5px rgba(124, 104, 238, 0.35), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.fk-mm-node.pending-link {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.35);
+}
+
+/* Bolinha de ligação oculta quando normal, mas visível no hover e também nos cards vinculados durante arraste (.pending-link) */
+.fk-node-anchor {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #52525b;
+  border: 1.5px solid #121215;
+  opacity: 0;
+  cursor: crosshair !important;
+  z-index: 4;
+  transition: opacity 0.15s ease, transform 0.12s ease, background 0.15s ease;
+}
+
+.fk-mindmap-viewport.is-locked .fk-node-anchor {
+  pointer-events: none;
+  cursor: default !important;
+  opacity: 0 !important;
+}
+
+.fk-mm-node:hover .fk-node-anchor,
+.fk-mm-node.pending-link .fk-node-anchor {
+  opacity: 1;
+  background: #38bdf8;
+}
+
+.fk-mm-node.root-node:hover .fk-node-anchor {
+  background: #fbbf24;
+}
+
+.fk-mm-node.link-node:hover .fk-node-anchor {
+  background: #d8b4fe !important;
+}
+
+.fk-mm-node.pending-link .fk-node-anchor {
+  background: #38bdf8 !important;
+}
+
+.fk-node-anchor:hover {
+  transform: scale(1.35);
+}
+
+/* Ícone identificador da Nota Principal no canto superior direito */
+.fk-mm-root-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 9.5px;
+  color: #fbbf24;
+  opacity: 0.95;
+  cursor: default;
+  z-index: 4;
+}
+
+/* Ícone indicador de descrição oculta com tooltip único */
+.fk-mm-collapsed-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 10px;
+  color: #a1a1aa;
+  opacity: 0.78;
+  cursor: default;
+  z-index: 4;
+  transition: color 0.12s ease, opacity 0.12s ease, top 0.12s ease;
+}
+
+.fk-mm-node.root-node .fk-mm-collapsed-icon {
+  top: 19px;
+}
+
+.fk-mm-collapsed-icon:hover {
+  color: #f4f4f5;
+  opacity: 1;
+}
+
+/* Espaçamento simétrico entre o texto, o ícone e a borda direita do card */
+.fk-mm-node.root-node.has-collapsed-icon {
+  min-height: 32px;
+}
+
+.fk-mm-node.root-node .fk-mm-node-title,
+.fk-mm-node.has-collapsed-icon .fk-mm-node-title {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.fk-mm-node-title {
+  outline: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #fafafa;
+  caret-color: #ffffff !important;
+  text-align: center;
+  cursor: default;
+  user-select: none;
+  min-height: 18px;
+  padding: 0 4px;
+}
+
+.fk-mm-node-title[contenteditable="true"] {
+  cursor: text !important;
+  user-select: text;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+.fk-mm-node-details {
+  outline: none;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #a1a1aa;
+  caret-color: #ffffff !important;
+  text-align: justify;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 5px;
+  margin-top: 2px;
+  cursor: text !important;
+  user-select: text;
+  min-height: 16px;
+}
+
+.fk-mindmap-viewport.is-locked .fk-mm-node-details,
+.fk-mindmap-viewport.select-mode-active .fk-mm-node-details {
+  cursor: default !important;
+  user-select: none !important;
+}
+
+.fk-mm-node.collapsed:not(.editing-expanded) .fk-mm-node-details {
+  display: none !important;
+}
+
+.fk-mm-node.editing-expanded .fk-mm-collapsed-icon {
+  display: none !important;
+}
+
+/* ================= CARD DE JOGADOR / MENÇÃO NO MAPA MENTAL ================= */
+.fk-mm-node.user-node {
+  cursor: default;
+}
+
+.fk-mm-node.user-node .fk-mm-user-icon {
+  font-size: 11px;
+  margin-right: 5px;
+}
+
+/* Sem acesso (Roxo) */
+.fk-mm-node.user-node[data-access="none"] {
+  border-color: #a78bfa;
+  background: #261838 !important;
+}
+
+.fk-mm-node.user-node[data-access="none"] .fk-mm-user-icon {
+  color: #c4b5fd;
+}
+
+.fk-mm-node.user-node[data-access="none"]:hover .fk-node-anchor {
+  background: #c4b5fd !important;
+}
+
+/* Com acesso (Ciano) */
+.fk-mm-node.user-node[data-access="shared"] {
+  border-color: #22d3ee;
+  background: #0f2930 !important;
+}
+
+.fk-mm-node.user-node[data-access="shared"] .fk-mm-user-icon {
+  color: #67e8f9;
+}
+
+.fk-mm-node.user-node[data-access="shared"]:hover .fk-node-anchor {
+  background: #67e8f9 !important;
+}
+
+/* Criador (Azul) */
+.fk-mm-node.user-node[data-access="creator"] {
+  border-color: #3b82f6;
+  background: #122138 !important;
+}
+
+.fk-mm-node.user-node[data-access="creator"] .fk-mm-user-icon {
+  color: #60a5fa;
+}
+
+.fk-mm-node.user-node[data-access="creator"]:hover .fk-node-anchor {
+  background: #60a5fa !important;
+}

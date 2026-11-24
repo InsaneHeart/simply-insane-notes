@@ -1,0 +1,578 @@
+/* ================= MODAIS UNIFICADOS (INFORMAÇÕES, SOBRE & CONFIGURAÇÕES) ================= */
+.fk-clean-modal-scroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #e4e4e7;
+  font-size: 13px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 16px 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+.fk-modal-top-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fk-modal-main-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fk-modal-subtitle {
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.fk-secret-trigger {
+  color: #a78bfa;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.2s ease;
+}
+
+.fk-secret-trigger:hover {
+  color: #facc15;
+  transform: rotate(20deg) scale(1.15);
+}
+
+.fk-clean-section-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+/* Changelog com títulos temáticos e espaçamento confortável */
+.fk-clean-changelog {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #d4d4d8;
+}
+
+.fk-clean-changelog h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #c4b5fd;
+  margin: 24px 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fk-clean-changelog h3:first-child {
+  margin-top: 4px;
+}
+
+.fk-clean-changelog ul {
+  padding-left: 18px;
+  margin: 6px 0 14px 0;
+}
+
+.fk-clean-changelog li {
+  margin: 9px 0;
+  line-height: 1.6;
+}
+
+.fk-clean-meta-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.fk-clean-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12.5px;
+}
+
+.fk-clean-meta-key {
+  color: #71717a;
+}
+
+.fk-clean-meta-val {
+  color: #f4f4f5;
+  font-weight: 500;
+}
+
+.fk-clean-links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.fk-link-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: #d4d4d8;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.fk-link-chip:hover {
+  background: rgba(139, 118, 248, 0.18);
+  border-color: rgba(155, 135, 245, 0.45);
+  color: #ffffff;
+}
+
+/* ================= EASTER EGG D20 ================= */
+.fk-d20-easter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 12px 10px;
+  gap: 8px;
+  line-height: 1.55;
+}
+
+.fk-d20-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1.5px solid #c4b5fd;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.fk-d20-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* ================= COMPONENTES DA TELA DE CONFIGURAÇÕES ================= */
+.fk-settings-label-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fk-settings-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #f4f4f5;
+}
+
+.fk-settings-desc {
+  font-size: 11.5px;
+  color: #71717a;
+}
+
+.fk-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+  padding: 6px 2px;
+}
+
+.fk-dict-input-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.fk-dict-input-row input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #fafafa !important;
+  caret-color: #ffffff !important;
+  border-radius: 4px !important;
+  padding: 4px 9px !important;
+  font-size: 12.5px !important;
+  height: 26px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.fk-dict-input-row input:focus {
+  border-color: rgba(155, 135, 245, 0.5) !important;
+}
+
+.fk-dict-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 115px;
+  overflow-y: auto;
+  padding: 8px 2px 2px 2px;
+}
+
+.fk-dict-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: #e4e4e7;
+  font-size: 12px;
+}
+
+.fk-dict-chip i {
+  cursor: pointer;
+  color: #71717a;
+  font-size: 10px;
+}
+
+.fk-dict-chip i:hover {
+  color: #f87171;
+}
+
+.fk-keybind-capture-btn {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #c4b5fd !important;
+  font-family: monospace;
+  font-size: 12px !important;
+  height: 24px !important;
+  min-width: 110px;
+  padding: 0 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.fk-keybind-capture-btn:hover {
+  background: rgba(139, 118, 248, 0.16) !important;
+  border-color: rgba(155, 135, 245, 0.45) !important;
+  color: #ffffff !important;
+}
+
+.fk-keybind-capture-btn.listening {
+  border-color: #eab308 !important;
+  color: #facc15 !important;
+  background: rgba(234, 179, 8, 0.12) !important;
+}
+
+/* ================= MARGENS E RODAPÉ DOS DIALOGS (COMPARTILHAR, INFO E SOBRE) ================= */
+.fk-notes-window.fk-share-dialog .window-content {
+  padding: 14px 18px 16px 18px !important;
+}
+
+.fk-notes-window.dialog:not(.fk-share-dialog) .form-footer {
+  padding: 10px 18px 14px 18px !important;
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 8px;
+}
+
+.fk-notes-window.dialog .form-footer button {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.fk-notes-window.dialog:not(.fk-share-dialog) .form-footer button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e4e4e7;
+}
+
+.fk-notes-window.dialog:not(.fk-share-dialog) .form-footer button:hover {
+  background: rgba(139, 118, 248, 0.22);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #ffffff;
+}
+
+/* ================= MODAL DE RESTAURAÇÃO DE BACKUP ================= */
+
+.fk-notes-window.fk-backup-restore-dialog .dialog-content {
+  padding: 0 !important;
+}
+
+.fk-backup-legacy-warn {
+  font-size: 12px;
+  color: #fde68a;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid rgba(234, 179, 8, 0.28);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fk-backup-mode-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 4px 2px;
+}
+
+.fk-backup-mode-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: #e4e4e7;
+  cursor: pointer;
+}
+
+.fk-backup-mode-option small {
+  color: #71717a;
+  font-size: 11.5px;
+}
+
+.fk-backup-gm-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(139, 118, 248, 0.2);
+  color: #c4b5fd;
+  margin-left: 5px;
+}
+
+.fk-backup-user-map {
+  width: 215px;
+  height: 26px !important;
+  font-size: 12px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #f4f4f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 4px !important;
+  padding: 0 8px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  flex-shrink: 0;
+}
+
+.fk-backup-user-map:focus {
+  border-color: rgba(155, 135, 245, 0.55) !important;
+}
+
+.fk-backup-user-map option {
+  background: #18181b;
+  color: #f4f4f5;
+}
+
+.fk-backup-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #d4d4d8;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.fk-notes-window.fk-backup-restore-dialog input[type="radio"],
+.fk-notes-window.fk-backup-restore-dialog input[type="checkbox"] {
+  accent-color: #7c68ee;
+  --checkbox-checked-color: #7c68ee;
+  --color-warm-2: #7c68ee;
+}
+
+.fk-backup-error {
+  display: none;
+  font-size: 12px;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 4px;
+  padding: 7px 10px;
+}
+
+.fk-backup-error.is-visible {
+  display: block;
+}
+
+.fk-notes-window.dialog.fk-backup-restore-dialog .form-footer button[data-action="restore"] {
+  background: rgba(139, 118, 248, 0.22);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #fafafa;
+}
+
+.fk-notes-window.dialog.fk-backup-restore-dialog .form-footer button[data-action="restore"]:hover:not(:disabled) {
+  background: rgba(139, 118, 248, 0.35);
+  border-color: #a78bfa;
+  color: #ffffff;
+}
+
+.fk-notes-window.dialog.fk-backup-restore-dialog .form-footer button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ================= MODAL DE COMPARTILHAMENTO PADRONIZADO ================= */
+.fk-share-dialog .window-content {
+  padding: 16px 20px 18px;
+}
+
+.fk-share-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fk-share-subtitle {
+  font-size: 12.5px;
+  color: #d4d4d8;
+}
+
+.fk-share-public-row {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 10px;
+  border-radius: 6px;
+  background: rgba(139, 118, 248, 0.12);
+  border: 1px solid rgba(155, 135, 245, 0.32);
+  font-size: 13px;
+  font-weight: 600;
+  color: #f4f4f5;
+  cursor: pointer;
+}
+
+.fk-share-public-row:hover {
+  background: rgba(139, 118, 248, 0.18);
+  border-color: rgba(167, 139, 250, 0.5);
+}
+
+.fk-share-section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.fk-share-users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.35) transparent;
+}
+
+.fk-share-user-row {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #e4e4e7;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.fk-share-user-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.fk-share-user-row.is-preselected {
+  background: rgba(34, 211, 238, 0.11);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+}
+
+.fk-share-user-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-share-user-meta {
+  font-size: 11px;
+  color: #71717a;
+  max-width: 110px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fk-share-empty {
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 12px;
+  color: #71717a;
+}
+
+.fk-share-dialog .form-footer {
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.fk-share-dialog .form-footer button[data-action="save"] {
+  background: rgba(139, 118, 248, 0.22);
+  border: 1px solid rgba(167, 139, 250, 0.55);
+  color: #fafafa;
+}
+
+.fk-share-dialog .form-footer button[data-action="save"]:hover {
+  background: rgba(139, 118, 248, 0.34);
+  border-color: #a78bfa;
+}
+
+.fk-share-dialog .form-footer button[data-action="cancel"] {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d4d4d8;
+}
+
+.fk-share-dialog .form-footer button[data-action="cancel"]:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.fk-easter-cooldown-inline {
+  font-size: 11.5px;
+  color: #71717a;
+  font-variant-numeric: tabular-nums;
+}
+
+.fk-easter-cooldown-inline:empty {
+  display: none;
+}
+
+.fk-secret-trigger.is-cooldown {
+  color: #71717a;
+}
+
+.fk-d20-cooldown {
+  margin-top: 4px;
+  font-size: 11.5px;
+  color: #71717a;
+  font-variant-numeric: tabular-nums;
+}
+
+.fk-d20-cooldown:empty {
+  display: none;
+}
